@@ -1,8 +1,8 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField,PasswordField,SubmitField
-from wtforms import DataRequired,Email, EqualTo
+from wtforms.validators import DataRequired, Email, EqualTo
 from wtforms import ValidationError
-from Flask_wtf.file import FileField,FileAllowed
+from flask_wtf.file import FileField,FileAllowed
 
 from flask_login import current_user
 from companyblog.models import User
@@ -28,7 +28,7 @@ class RegistrationForm(FlaskForm):
         if User.query.filter_by(email=field.data).first():
             raise ValidationError('Your username has been registered already!')
 
- class UpdateUserForm(FlaskForm):
+class UpdateUserForm(FlaskForm):
 
     email = StringField('Email',validators=[DataRequired(),Email()])
     username = StringField('UserName',validators=[DataRequired()])

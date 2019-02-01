@@ -1,7 +1,9 @@
 #users/views.py
 from flask import render_template,url_for,flash,redirect,request,Blueprint
-from flask_login import db
+from flask_login import login_user, current_user, logout_user, login_required
+from companyblog import db
 from companyblog.models import User, BlogPost
+from companyblog.users.forms import RegistrationForm,LoginForm,UpdateUserForm
 from companyblog.users.picture_handler import add_profile_pic
 
 users = Blueprint('users',__name__)
@@ -25,7 +27,7 @@ def register():
     return render_template('register.html',form=form)
 
 # login
-@users.route('login',methods=['GET','POST'])
+@users.route('/login',methods=['GET','POST'])
 def login():
 
     form = LoginForm()
@@ -45,7 +47,7 @@ def login():
 
             return redirect(next)
 
-        return render_template('login.html',form=form)
+    return render_template('login.html',form=form)
 
 # logout
 @users.route("/logout")
@@ -59,12 +61,13 @@ def logout():
 def account():
 
     form = UpdateUserForm()
+
     if form.validate_on_submit():
 
         if form.picture.data:
             username = current_user.username
             pic = add_profile_pic(form.picture.data,username)
-            current_user.profile_image = picgit
+            current_user.profile_image = pic
 
         current_user.username = form.username.data
         current_user.email = form.email.data
