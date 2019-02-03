@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import SelectField,SubmitField,TextAreaField
+from wtforms import SubmitField,TextAreaField,StringField
 from wtforms.validators import DataRequired
 
 class BlogPostForm(FlaskForm):

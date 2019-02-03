@@ -1,10 +1,4 @@
 # companyblog/__init__.py
-from flask import Flask
-
-app = Flask(__name__)
-
-from companyblog.core.views import core
-from companyblog.error_pages.handlers import error_pages
 import os
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy

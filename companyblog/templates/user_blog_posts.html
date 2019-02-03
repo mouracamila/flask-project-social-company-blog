@@ -9,12 +9,12 @@
     </div>
 </div>
 
-{% for post in blog_post.items %}
+{% for post in blog_posts.items %}
     <h2>
         <a href="{{'blog_posts.blog_post',blog_post_id=post.id}}">{{post.title}}</a>
     </h2>
 
-    written By: <a href="{{url_for('users.user_post',username=post.author.username)}}">{{post.author.username}}</a>
+    written By: <a href="{{url_for('users.user_posts',username=post.author.username)}}">{{post.author.username}}</a>
 
     <p class='text-muted'>Published on: {{post.data.strftime("%Y-%m-%d")}}</p>
 
