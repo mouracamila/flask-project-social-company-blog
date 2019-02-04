@@ -7,7 +7,6 @@
             <img src="{{url_for('static',filename='profile_pics/'+user.profile_image)}}" >
         </div>
     </div>
-</div>
 
 {% for post in blog_posts.items %}
     <h2>
@@ -23,7 +22,7 @@
     <br>
 
 {% endfor %}
-
+</div>
 <nav aria-label="Page Navigation example">
     <ul class="pagination justify-content-center">
         {% for page_num in blog_posts.iter_pages(left_edge=1,right_edge=1,left_current=1,right_current=2) %}
@@ -41,5 +40,4 @@
 
 </nav>
 
-
-{% endblock %}
+{% endblock content %}
